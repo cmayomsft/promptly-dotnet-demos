@@ -3,6 +3,7 @@ using Microsoft.Bot.Builder;
 using PromptlyBot;
 using PromptlyBot.Validator;
 using System.Threading.Tasks;
+using PromptlyBot.Prompts;
 
 namespace Topics.Topics
 {
