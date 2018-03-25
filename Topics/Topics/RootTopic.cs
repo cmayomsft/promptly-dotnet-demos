@@ -1,5 +1,4 @@
 ﻿using Topics.Models;
-using Topics.Views;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
@@ -9,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace Topics.Topics
 {
-    public class RootTopic : TopicsRoot<BotConversationState>
+    public class RootTopicState : ConversationTopicState
+    {
+
+    }
+
+    public class RootTopic : TopicsRoot<BotConversationState, RootTopicState>
     {
         private const string ADD_ALARM_TOPIC = "addAlarmTopic";
 

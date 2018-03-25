@@ -5,10 +5,11 @@ using Microsoft.Bot;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Core.Extensions;
 using PromptlyBot;
+using Topics.Topics;
 
 namespace Topics
 {
-    public class BotConversationState : TopicsRootState
+    public class BotConversationState : PromptlyBotConversationState<RootTopicState>
     {
     }
 
