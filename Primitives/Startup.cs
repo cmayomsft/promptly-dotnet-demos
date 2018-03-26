@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Bot.Builder.Adapters;
-using Microsoft.Bot.Builder.Middleware;
-using Microsoft.Bot.Builder.Storage;
-using Microsoft.Bot.Connector.Authentication;
+using Microsoft.Bot.Builder.BotFramework;
+using Microsoft.Bot.Builder.Core.Extensions;
+using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,10 +10,15 @@ namespace Primitives
 {
     public class Startup
     {
-
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -22,17 +26,13 @@ namespace Primitives
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<BotFrameworkAdapter>(serviceProvider =>
+            services.AddBot<Bot>(options =>
             {
-                string applicationId = Configuration.GetSection(MicrosoftAppCredentials.MicrosoftAppIdKey)?.Value;
-                string applicationPassword = Configuration.GetSection(MicrosoftAppCredentials.MicrosoftAppPasswordKey)?.Value;
-
-                return new BotFrameworkAdapter(applicationId, applicationPassword)
-                    .Use(new UserStateManagerMiddleware(new MemoryStorage()))
-                    .Use(new ConversationStateManagerMiddleware(new MemoryStorage()));
+                options.CredentialProvider = new ConfigurationCredentialProvider(Configuration);
+                options.Middleware.Add(new ConversationState<BotConversationState>(new MemoryStorage()));
+                options.Middleware.Add(new UserState<BotUserState>(new MemoryStorage()));
+                options.EnableProactiveMessages = true;
             });
-
-            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +43,9 @@ namespace Primitives
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseDefaultFiles()
+                .UseStaticFiles()
+                .UseBotFramework();
         }
     }
 }
