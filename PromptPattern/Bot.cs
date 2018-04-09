@@ -4,7 +4,7 @@ using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 
-namespace Primitives
+namespace PromptPattern
 {
     public class BotConversationState
     {

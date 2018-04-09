@@ -6,7 +6,7 @@ using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Primitives
+namespace SimplePrompt
 {
     public class Startup
     {
@@ -30,7 +30,6 @@ namespace Primitives
             {
                 options.CredentialProvider = new ConfigurationCredentialProvider(Configuration);
                 options.Middleware.Add(new ConversationState<BotConversationState>(new MemoryStorage()));
-                options.Middleware.Add(new UserState<BotUserState>(new MemoryStorage()));
                 options.EnableProactiveMessages = true;
             });
         }
