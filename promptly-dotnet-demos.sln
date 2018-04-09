@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topics", "Topics\Topics.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromptPattern", "PromptPattern\PromptPattern.csproj", "{6DB82E36-956E-4825-8CD1-13B965EB73A2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplePrompt", "SimplePrompt\SimplePrompt.csproj", "{2E6C0A20-C909-45A5-AB69-66D661E6B097}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6DB82E36-956E-4825-8CD1-13B965EB73A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DB82E36-956E-4825-8CD1-13B965EB73A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DB82E36-956E-4825-8CD1-13B965EB73A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E6C0A20-C909-45A5-AB69-66D661E6B097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E6C0A20-C909-45A5-AB69-66D661E6B097}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E6C0A20-C909-45A5-AB69-66D661E6B097}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E6C0A20-C909-45A5-AB69-66D661E6B097}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
