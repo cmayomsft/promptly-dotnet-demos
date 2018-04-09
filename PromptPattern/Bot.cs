@@ -3,17 +3,19 @@ using Microsoft.Bot;
 using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
+using System;
 
 namespace PromptPattern
 {
     public class BotConversationState
     {
-        public string Prompt { get; set; }
+        public string ActivePrompt { get; set; }
     }
 
     public class BotUserState: StoreItem
     {
         public string Name { get; set; }
+        public int? Age { get; set; }
     }
 
     public class Bot : IBot
@@ -24,30 +26,46 @@ namespace PromptPattern
             {
                 var message = context.Request.AsMessageActivity().Text;
 
-                // If bot doesn't have state it needs, prompt for it.
-                if (context.GetUserState<BotUserState>().Name == null)
-                {
-                    // On the first turn, prompt and update state that conversation is in a prompt.
-                    if (context.GetConversationState<BotConversationState>().Prompt != "name")
-                    {
-                        context.GetConversationState<BotConversationState>().Prompt = "name";
-                        context.SendActivity("What is your name?");
-                    }
-                    else
-                    {
-                        // On the subsequent turn, update state with reply and update state that prompt has completed.
-                        context.GetConversationState<BotConversationState>().Prompt = "";
-                        context.GetUserState<BotUserState>().Name = message;
-                        context.SendActivity($"Great, I'll call you '{ context.GetUserState<BotUserState>().Name }'!");
-                    }
-                }
-                else
-                {
-                    context.SendActivity($"{ context.GetUserState<BotUserState>().Name } said: '{ message }'");
-                }
-            }
+                var conversationState = context.GetConversationState<BotConversationState>();
+                var userState = context.GetUserState<BotUserState>();
 
-            return Task.CompletedTask;
+                // On the subsequent turn, update state with reply from user and that prompt has completed.
+                if (conversationState.ActivePrompt != null)
+                {
+                    switch (conversationState.ActivePrompt)
+                    {
+                        case "namePrompt":
+                            userState.Name = message;
+                            break;
+
+                        case "agePrompt":
+                            userState.Age = Int32.Parse(message);
+                            break;
+                    }
+
+                    conversationState.ActivePrompt = null;
+                }
+
+                // If bot doesn't have state it needs, prompt for it.
+                if (userState.Name == null)
+                {
+                    conversationState.ActivePrompt = "namePrompt";
+                    return context.SendActivity("What is your name?");
+                }
+
+                if (userState.Age == null)
+                {
+                    conversationState.ActivePrompt = "agePrompt";
+                    return context.SendActivity("How old are you?");
+                }
+
+                // If the bot has the state it needs, use it!
+                return context.SendActivity($"Hello { userState.Name }! You are { userState.Age } years old.");
+            }
+            else
+            {
+                return context.SendActivity($"Received activity of type '{ context.Request.Type }'");
+            }
         }
     }
 }
