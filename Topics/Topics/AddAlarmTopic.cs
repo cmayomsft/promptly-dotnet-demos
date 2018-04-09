@@ -5,7 +5,7 @@ using PromptlyBot.Validator;
 using System.Threading.Tasks;
 using PromptlyBot.Prompts;
 
-namespace Topics.Topics
+namespace AlarmBot.Topics
 {
     public class AddAlarmTopicState : ConversationTopicState
     {

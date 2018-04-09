@@ -6,7 +6,7 @@ using PromptlyBot;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Topics.Topics
+namespace AlarmBot.Topics
 {
     public class RootTopicState : ConversationTopicState
     {

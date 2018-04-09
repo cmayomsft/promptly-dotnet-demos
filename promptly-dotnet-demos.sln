@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topics", "Topics\Topics.csproj", "{35DC1BB1-5C4D-44A2-A0D8-3A4EAF2001FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlarmBot", "Topics\AlarmBot.csproj", "{35DC1BB1-5C4D-44A2-A0D8-3A4EAF2001FC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromptPattern", "PromptPattern\PromptPattern.csproj", "{6DB82E36-956E-4825-8CD1-13B965EB73A2}"
 EndProject
