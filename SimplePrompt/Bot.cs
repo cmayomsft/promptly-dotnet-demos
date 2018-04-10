@@ -2,7 +2,6 @@
 using PromptlyBot;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Core.Extensions;
 using SimplePrompt.Topics;
 
 namespace SimplePrompt
@@ -15,7 +14,7 @@ namespace SimplePrompt
     {
         public Task OnReceiveActivity(IBotContext context)
         {
-            var rootTopic = new Topics.RootTopic(context);
+            var rootTopic = new RootTopic(context);
 
             rootTopic.OnReceiveActivity(context);
 

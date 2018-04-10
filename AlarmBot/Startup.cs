@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Bot.Builder.Core.Extensions;
 
-namespace Topics
+namespace AlarmBot
 {
     public class Startup
     {

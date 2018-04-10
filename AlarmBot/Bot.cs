@@ -5,9 +5,9 @@ using Microsoft.Bot;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Core.Extensions;
 using PromptlyBot;
-using Topics.Topics;
+using AlarmBot.Topics;
 
-namespace Topics
+namespace AlarmBot
 {
     public class BotConversationState : PromptlyBotConversationState<RootTopicState>
     {

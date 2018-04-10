@@ -6,7 +6,7 @@ using PromptlyBot;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Topics.Topics
+namespace AlarmBot.Topics
 {
     public class RootTopicState : ConversationTopicState
     {
@@ -26,6 +26,44 @@ namespace Topics.Topics
                 context.GetUserState<BotUserState>().Alarms = new List<Alarm>();
             }
 
+
+        }
+
+        public override Task OnReceiveActivity(IBotContext context)
+        {
+            if ((context.Request.Type == ActivityTypes.Message) && (context.Request.AsMessageActivity().Text.Length > 0))
+            {
+                var message = context.Request.AsMessageActivity();
+
+                // If the user wants to change the topic of conversation...
+                if (message.Text.ToLowerInvariant() == "add alarm")
+                {
+                    // Set the active topic and let the active topic handle this turn.
+
+                }
+
+                // If there is an active topic, let it handle this turn until it completes.
+
+
+                ShowDefaultMessage(context);
+            }
+
+            return Task.CompletedTask;
+        }
+
+        private void ShowDefaultMessage(IBotContext context)
+        {
+            context.SendActivity("'Add Alarm'.");
+        }
+    }
+}
+
+
+
+
+
+
+            /*
             this.SubTopics.Add(ADD_ALARM_TOPIC, (object[] args) =>
             {
                 var addAlarmTopic = new AddAlarmTopic();
@@ -50,14 +88,14 @@ namespace Topics.Topics
 
                 return addAlarmTopic;
             });
-        }
+            */
 
-        public override Task OnReceiveActivity(IBotContext context)
-        {
-            if ((context.Request.Type == ActivityTypes.Message) && (context.Request.AsMessageActivity().Text.Length > 0))
-            {
-                var message = context.Request.AsMessageActivity();
 
+
+
+
+
+                /*
                 // If the user wants to change the topic of conversation...
                 if (message.Text.ToLowerInvariant() == "add alarm")
                 {
@@ -73,16 +111,4 @@ namespace Topics.Topics
                     ActiveTopic.OnReceiveActivity(context);
                     return Task.CompletedTask;
                 }
-
-                ShowDefaultMessage(context);
-            }
-
-            return Task.CompletedTask;
-        }
-
-        private void ShowDefaultMessage(IBotContext context)
-        {
-            context.SendActivity("'Add Alarm'.");
-        }
-    }
-}
+                */

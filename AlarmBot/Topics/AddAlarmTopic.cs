@@ -5,7 +5,7 @@ using PromptlyBot.Validator;
 using System.Threading.Tasks;
 using PromptlyBot.Prompts;
 
-namespace Topics.Topics
+namespace AlarmBot.Topics
 {
     public class AddAlarmTopicState : ConversationTopicState
     {
@@ -19,6 +19,61 @@ namespace Topics.Topics
 
         public AddAlarmTopic() : base()
         {
+
+        }
+
+        public override Task OnReceiveActivity(IBotContext context)
+        {
+
+
+            return Task.CompletedTask;
+        }
+    }
+
+    public class AlarmTitleValidator : Validator<string>
+    {
+        public override ValidatorResult<string> Validate(IBotContext context)
+        {
+            if (context.Request.AsMessageActivity().Text.Length > 20)
+            {
+                return new ValidatorResult<string>
+                {
+                    Reason = "titletoolong"
+                };
+            }
+            else
+            {
+                return new ValidatorResult<string>
+                {
+                    Value = context.Request.AsMessageActivity().Text
+                };
+            }
+        }
+    }
+
+    public class AlarmTimeValidator : Validator<string>
+    {
+        public override ValidatorResult<string> Validate(IBotContext context)
+        {
+            return new ValidatorResult<string>
+            {
+                Value = context.Request.AsMessageActivity().Text
+            };
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+            /*
             this.SubTopics.Add(TITLE_PROMPT, (object[] args) =>
             {
                 var titlePrompt = new Prompt<string>();
@@ -92,11 +147,12 @@ namespace Topics.Topics
 
                 return timePrompt;
             });
+            */
 
-        }
 
-        public override Task OnReceiveActivity(IBotContext context)
-        {
+
+
+            /*
             if (HasActiveTopic)
             {
                 ActiveTopic.OnReceiveActivity(context);
@@ -118,40 +174,4 @@ namespace Topics.Topics
             }
 
             this.OnSuccess(context, this.State.Alarm);
-
-            return Task.CompletedTask;
-        }
-    }
-
-    public class AlarmTitleValidator : Validator<string>
-    {
-        public override ValidatorResult<string> Validate(IBotContext context)
-        {
-            if (context.Request.AsMessageActivity().Text.Length > 20)
-            {
-                return new ValidatorResult<string>
-                {
-                    Reason = "titletoolong"
-                };
-            }
-            else
-            {
-                return new ValidatorResult<string>
-                {
-                    Value = context.Request.AsMessageActivity().Text
-                };
-            }
-        }
-    }
-
-    public class AlarmTimeValidator : Validator<string>
-    {
-        public override ValidatorResult<string> Validate(IBotContext context)
-        {
-            return new ValidatorResult<string>
-            {
-                Value = context.Request.AsMessageActivity().Text
-            };
-        }
-    }
-}
+            */

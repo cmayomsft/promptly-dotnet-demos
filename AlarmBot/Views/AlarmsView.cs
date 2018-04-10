@@ -2,7 +2,7 @@
 using Microsoft.Bot.Builder;
 using System.Collections.Generic;
 
-namespace Topics.Views
+namespace AlarmBot.Views
 {
     public static class AlarmsView
     {
