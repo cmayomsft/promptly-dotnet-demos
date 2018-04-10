@@ -25,6 +25,32 @@ namespace PromptPattern
                 var conversationState = context.GetConversationState<BotConversationState>();
 
                 // On the subsequent turn, update state with reply from user and that prompt has completed.
+
+
+                // If bot doesn't have state it needs, prompt for it.
+
+
+                // If the bot has the state it needs, use it!
+                return context.SendActivity($"Hello { conversationState.Name }! You are { conversationState.Age } years old.");
+            }
+            else
+            {
+                return context.SendActivity($"Received activity of type '{ context.Request.Type }'");
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+                /*
+                // On the subsequent turn, update state with reply from user and that prompt has completed.
                 if (conversationState.ActivePrompt != null)
                 {
                     switch (conversationState.ActivePrompt)
@@ -53,50 +79,4 @@ namespace PromptPattern
                     conversationState.ActivePrompt = "agePrompt";
                     return context.SendActivity("How old are you?");
                 }
-
-                // If the bot has the state it needs, use it!
-                return context.SendActivity($"Hello { conversationState.Name }! You are { conversationState.Age } years old.");
-            }
-            else
-            {
-                return context.SendActivity($"Received activity of type '{ context.Request.Type }'");
-            }
-        }
-    }
-}
-
-
-                /*
-                // On the subsequent turn, update state with reply from user and that prompt has completed.
-                if (conversationState.ActivePrompt != null)
-                {
-                    switch (conversationState.ActivePrompt)
-                    {
-                        case "namePrompt":
-                            userState.Name = message;
-                            break;
-
-                        case "agePrompt":
-                            userState.Age = Int32.Parse(message);
-                            break;
-                    }
-
-                    conversationState.ActivePrompt = null;
-                }
-
-                // If bot doesn't have state it needs, prompt for it.
-                if (userState.Name == null)
-                {
-                    conversationState.ActivePrompt = "namePrompt";
-                    return context.SendActivity("What is your name?");
-                }
-
-                if (userState.Age == null)
-                {
-                    conversationState.ActivePrompt = "agePrompt";
-                    return context.SendActivity("How old are you?");
-                }
-
-                // If the bot has the state it needs, use it!
-                return context.SendActivity($"Hello { userState.Name }! You are { userState.Age } years old.");
                 */
