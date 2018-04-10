@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlarmBot", "Topics\AlarmBot.csproj", "{35DC1BB1-5C4D-44A2-A0D8-3A4EAF2001FC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromptPattern", "PromptPattern\PromptPattern.csproj", "{6DB82E36-956E-4825-8CD1-13B965EB73A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplePrompt", "SimplePrompt\SimplePrompt.csproj", "{2E6C0A20-C909-45A5-AB69-66D661E6B097}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlarmBot", "AlarmBot\AlarmBot.csproj", "{4D0EF33A-45E9-46CA-B80B-7C5D63772D51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35DC1BB1-5C4D-44A2-A0D8-3A4EAF2001FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35DC1BB1-5C4D-44A2-A0D8-3A4EAF2001FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35DC1BB1-5C4D-44A2-A0D8-3A4EAF2001FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35DC1BB1-5C4D-44A2-A0D8-3A4EAF2001FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6DB82E36-956E-4825-8CD1-13B965EB73A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6DB82E36-956E-4825-8CD1-13B965EB73A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DB82E36-956E-4825-8CD1-13B965EB73A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{2E6C0A20-C909-45A5-AB69-66D661E6B097}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E6C0A20-C909-45A5-AB69-66D661E6B097}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E6C0A20-C909-45A5-AB69-66D661E6B097}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D0EF33A-45E9-46CA-B80B-7C5D63772D51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D0EF33A-45E9-46CA-B80B-7C5D63772D51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D0EF33A-45E9-46CA-B80B-7C5D63772D51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D0EF33A-45E9-46CA-B80B-7C5D63772D51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
