@@ -10,10 +10,6 @@ namespace PromptPattern
     public class BotConversationState
     {
         public string ActivePrompt { get; set; }
-    }
-
-    public class BotUserState: StoreItem
-    {
         public string Name { get; set; }
         public int? Age { get; set; }
     }
@@ -27,14 +23,39 @@ namespace PromptPattern
                 var message = context.Request.AsMessageActivity().Text;
 
                 var conversationState = context.GetConversationState<BotConversationState>();
-                var userState = context.GetUserState<BotUserState>();
 
                 // On the subsequent turn, update state with reply from user and that prompt has completed.
+                if (conversationState.ActivePrompt != null)
+                {
+                    switch (conversationState.ActivePrompt)
+                    {
+                        case "namePrompt":
+                            conversationState.Name = message;
+                            break;
+
+                        case "agePrompt":
+                            conversationState.Age = Int32.Parse(message);
+                            break;
+                    }
+
+                    conversationState.ActivePrompt = null;
+                }
 
                 // If bot doesn't have state it needs, prompt for it.
+                if (conversationState.Name == null)
+                {
+                    conversationState.ActivePrompt = "namePrompt";
+                    return context.SendActivity("What is your name?");
+                }
+
+                if (conversationState.Age == null)
+                {
+                    conversationState.ActivePrompt = "agePrompt";
+                    return context.SendActivity("How old are you?");
+                }
 
                 // If the bot has the state it needs, use it!
-                return context.SendActivity($"Hello { userState.Name }! You are { userState.Age } years old.");
+                return context.SendActivity($"Hello { conversationState.Name }! You are { conversationState.Age } years old.");
             }
             else
             {

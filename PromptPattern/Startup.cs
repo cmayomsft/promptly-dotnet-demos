@@ -30,7 +30,6 @@ namespace PromptPattern
             {
                 options.CredentialProvider = new ConfigurationCredentialProvider(Configuration);
                 options.Middleware.Add(new ConversationState<BotConversationState>(new MemoryStorage()));
-                options.Middleware.Add(new UserState<BotUserState>(new MemoryStorage()));
                 options.EnableProactiveMessages = true;
             });
         }
