@@ -37,7 +37,7 @@ namespace PromptPattern
             {
                 return turnContext.SendActivity($"Received activity of type '{ turnContext.Activity.Type }'");
             }
-        }
+        }   
     }
 }
 
